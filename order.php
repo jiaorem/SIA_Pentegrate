@@ -9,7 +9,6 @@ $stripe = new \Stripe\StripeClient(
   );
 
 try {
-  //$checkout = $stripe->checkout->sessions->all(['limit' => 1]);
   $checkout = $stripe->paymentIntents->all(['limit' => 1]);
 
   $amount = $checkout['data'][0]['amount'];

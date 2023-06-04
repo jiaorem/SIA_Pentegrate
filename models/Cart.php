@@ -117,4 +117,20 @@ class Cart
 			error_log($e->getMessage());
 		}
 	}
+
+	public function updateCart($product_id, $cart_item_quantity, $newprice){
+		try {
+			$sql = "UPDATE ptg_cart_items SET total_price=?, cart_item_quantity=? WHERE user_id=? AND product_id=?";
+			$statement = $this->connection->prepare($sql);
+			$statement->execute([
+				$newprice,
+				$cart_item_quantity,
+				1,
+				$product_id
+			]);
+
+		} catch (Exception $e) {
+			error_log($e->getMessage());
+		}
+	}
 }
